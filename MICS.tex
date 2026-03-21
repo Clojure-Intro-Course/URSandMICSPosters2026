@@ -61,20 +61,23 @@ Past work at Morris included the modifications to the error messages to make the
 %\tkcomment{Tristan's section}
     \begin{itemize}
 %	\item \emcomment{Includes reasons to teach FP to beginners}
-	\item Functional programming has a rich history of being introduced early in programming education [4].
-	\item It emphasizes breaking problems into smaller, manageable, easy-to-combine pieces.
+	\item Clojure is a Lisp implemented in Java that runs in the JVM.
+	\item Lisp languages have a rich history of being introduced early in programming education [4].
+	\item It emphasizes breaking problems into smaller, manageable, easy-to-combine pieces. \emcomment{need to say something about functions being first-class citizens}
 %promotes a more declarative programming style. Which is where you tell it what you want to happen rather than giving it a list of steps to follow.
 	\item It builds a strong foundation for students in subjects like recursion, higher-order functions, immutable data, and problem decomposition.
-    \item Clojure is a functional language
+%    \item Clojure is a functional language
 %Lisp-based language 
-that encourages these principles and is a great tool for introducing students to functional programming.
-    \item It has a simple, minimal syntax with prefix notation in statements and statements are surrounded by parentheses: \texttt{(+ 2 3)} is the way to write $2 + 3$.
-    \item It uses an interactive Read-Evaluate-Print-Loop (REPL) environment: the user types some code, the system evaluates it and prints the answer.
+%that encourages these principles and is a great tool for introducing students to functional programming.
+    \item It has a simple prefix notation syntax for fucntion calls and special forms that's consistent across the language: \texttt{(+ 2 3), (filter odd? [1 2 3])}.
+    \item It uses an interactive Read-Evaluate-Print-Loop (REPL) environment
+%: the user types some code, the system evaluates it and prints the answer.
     \end{itemize}
 }
 
  \block{Clojure Error Messages}{
 %\tkcomment{Tristan's section}
+\emcomment{Change discussion to take into account that your target audience knows what Java is}
     \begin{itemize}
     \item Error messages are understandable to experienced developers, but have terminology that does not make sense to beginner programmers.
     \item Clojure code is compiled into a more common language, Java. It is a more complex language whose data types and features are not known to beginner programmers. 
@@ -85,6 +88,7 @@ that encourages these principles and is a great tool for introducing students to
 }
 
 \block{Our Project, Babel}{
+\emcomment{Add the example right here, combine with the Example building block}
     \begin{itemize}
         \item One focus of our research is development of a tool called Babel to modify Clojure error messages.
         \item Many error messages are directly replaced in the REPL with simplified, beginner-friendly versions.
