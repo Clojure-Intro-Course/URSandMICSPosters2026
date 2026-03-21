@@ -98,7 +98,7 @@ that encourages these principles and is a great tool for introducing students to
 
 \column{0.4}
  \block{Work in Progress This Year}{
-         \jscomment{Should the previously completed things, like the check functions and game framework, go here, or in a different section?}
+    \jscomment{Should the previously completed things, like the check functions and game framework, go here, or in a different section?}
     \begin{itemize}
    
         \item My current task is to develop a system that automatically logs student activities in Clojure, especially around error messages.
@@ -112,25 +112,13 @@ that encourages these principles and is a great tool for introducing students to
     Correct call: \\
     \texttt{user=>(even? 2)} \\
     \texttt{true} \\
-\jscomment{This is probably much too wordy for what you were suggesting, and it definitely doesn't fit on the left column without also moving something else over or cutting a lot from the other sections. What should we do about column organization?}
-
     Default Clojure Error Messages in REPL: \\
-    \texttt{user=>(even? "two")} \\
-    \texttt{Execution error (IllegalArgumentException) at user/eval2044 (REPL:1).}\\
-    \texttt{Argument must be an integer: two}
-The message gives the error as a Java exception, which isn't helpful to a beginner programmer. Also, by default, strings are printed without quotation marks into the console, making it unclear what the failing argument is.
-
     \texttt{user=>(even? 2 3)} \\
     \texttt{Execution error (ArityException) at user/eval2046 (REPL:1).} \\ 
      \texttt{Wrong number of args (2) passed to: clojure.core/even?} \\
 As in the previous error, the exact call to the failing function is not stated clearly. The only reference we get that \texttt{(even? 2 3)} was the exact call that failed was the \texttt{clojure.core/even?}. This message may be ambiguous to a beginner if they called this function in multiple places.
 
     Default Babel Error Messages in REPL: \\
-    \texttt{user=>(even? "two")}\\
-    \texttt{The first argument of (even? "two") was expected to be a number but is a string "two" instead.}\\
-    \texttt{In Clojure interactive session on line 1.}
-This message replaces the confusing programming jargon with a simple English sentence that explains the error and what it was. Babel performs similar replacements with almost all Java and Clojure exceptions. In addition, the string is given quotation marks, making it clear that it was a string.
-
     \texttt{user=>(even? 2 3)} \\
     \texttt{Wrong number of arguments in (even? 2 3): the function even? expects one argument but was given two arguments.}\\
     \texttt{In Clojure interactive session on line 1.} \\
