@@ -10,7 +10,7 @@
 \usepackage{graphicx}
 \usepackage{authblk}
 \usepackage{color}
-\usepackage[all]{xy}
+% \usepackage[all]{xy}
 
 \usetheme{board}
 
@@ -25,12 +25,11 @@
 %\newcommand{\comment}[1]{}
 % for color names see https://www.overleaf.com/learn/latex/Using_colors_in_LaTeX
 \newcommand{\emcomment}[1]{\textcolor{ForestGreen}{\comment{Elena: {#1}}}}
-\newcommand{\todo}[1]{\textcolor{blue}{\comment{To Do: {#1}}}}
-\newcommand{\tkcomment}[1]{\textcolor{Teal}{\comment{Tristan: {#1}}}}
-\newcommand{\jscomment}[1]{\textcolor{olive}{\comment{Jaydon: {#1}}}}
-\newcommand{\jwcomment}[1]{\textcolor{violet}{\comment{John: {#1}}}}
 
-\title{.}
+\newcommand{\jscomment}[1]{\textcolor{magenta}{\comment{James: {#1}}}}
+
+
+\title{Developing a framework for text-based game development for beginners in Clojure}
 \author[1]{James Swearingen}
 \author[1]{Elena Machkasova (adviser)}
 \date{\today}
@@ -47,7 +46,13 @@
 \maketitle
 
 \block{Abstract}{
-The Clojure programming language has educational potential for beginner programmers due to its clean, simple syntax and its strong focus on functional programming, an important aspect of CSci education. However, one weakness of Clojure lies in its error messages, which are messages that programmers receive when a program goes wrong. The terminology and shorthands used to convey necessary information for understanding the error are often confusing to novices. The issue is exacerbated by the fact that the error messages are phrased in terms of the underlying programming language – Java – which beginner programmers may typically be unfamiliar with. A research group at UMN Morris is developing a tool, called Babel, that replaces the language's default error messages with less jargon-heavy forms. This year, we started utilizing a graphical interface for viewing Clojure data to highlight the important details and terminology via context-based formatting choices, designed to make it possible for users to easily explore the reasons for the error and get access to relevant resources. We present our work-in-progress design of displaying error messages and discuss its potential benefits for new learners. 
+Clojure is a relatively new functional Lisp-like programming language that is used in industry and is supported by a community of developers. It is also a promising language for a beginner classroom due to its simple syntax, focus on small functions and on recursive algorithms, and data that’s immutable by default. However, there are gaps that make its adoption challenging. Debugging in Clojure can be unintuitive, because Clojure errors are exceptions in the underlying Java language. They frequently contain terminology intended for experienced developers, leaving out important context.
+
+Past work at Morris included the modifications to the error messages to make them understandable by beginners, but in order to perform usability testing with the target audience the error messages need to be incorporated into a simple development environment. This project is a continuation of an ongoing research, focusing on developing such an environment.
+
+% My work to be presented at MICS is focused on developing a framework for students to create simple text-based interactive games. The framework handles modifications to the game state while allowing students to write functions to describe the game state transformations without directly using mutability. Additionally, I am working on a set of simple functions that allow students to test their code without using sophisticated testing engines. This environment is inspired by a similar environment in the Racket programming language successfully used in introductory programming classes, although at this point we are not including graphical features used in Racket.
+
+% My poster will present examples of uses of the environment. It will also discuss implementation challenges and their solutions. 
 %\emcomment{Needs to be shortened and changed to match this year's work}
 }
 \begin{columns}
@@ -89,7 +94,41 @@ that encourages these principles and is a great tool for introducing students to
     \end{itemize}
 }
 
-\block{Goals for This Year}{
+
+\block{Examples}{
+%\jwcomment{John's section.}
+%\emcomment{(even? "two"), (even? 2 3)}
+    Correct call: \\
+    \texttt{user=>(even? 2)} \\
+    \texttt{true} \\
+\jscomment{This is probably much too wordy for what you were suggesting, and it definitely doesn't fit on the left column here without also moving something else over or cutting a lot from the other sections.}
+
+    Default Clojure Error Messages in REPL: \\
+    \texttt{user=>(even? "two")} \\
+    \texttt{Execution error (IllegalArgumentException) at user/eval2044 (REPL:1).}\\
+    \texttt{Argument must be an integer: two}
+The message gives the error as a Java exception, which isn't helpful to a beginner programmer. Also, by default, strings are printed without quotation marks into the console, making it unclear what the failing argument is.
+
+    \texttt{user=>(even? 2 3)} \\
+    \texttt{Execution error (ArityException) at user/eval2046 (REPL:1).} \\ 
+     \texttt{Wrong number of args (2) passed to: clojure.core/even?} \\
+As in the previous error, the exact call to the failing function is not stated clearly. The only reference we get that \texttt{(even? 2 3)} was the exact call that failed was the \texttt{clojure.core/even?}. This message may be ambiguous to a beginner if they called this function in multiple places.
+
+    Default Babel Error Messages in REPL: \\
+    \texttt{user=>(even? "two")}\\
+    \texttt{The first argument of (even? "two") was expected to be a number but is a string "two" instead.}\\
+    \texttt{In Clojure interactive session on line 1.}
+This message replaces the confusing programming jargon with a simple English sentence that explains the error and what it was. Babel performs similar replacements with almost all Java and Clojure exceptions. In addition, the string is given quotation marks, making it clear that it was a string.
+
+    \texttt{user=>(even? 2 3)} \\
+    \texttt{Wrong number of arguments in (even? 2 3): the function even? expects one argument but was given two arguments.}\\
+    \texttt{In Clojure interactive session on line 1.} \\
+The specific function call is stated in the error message, and the statement about "wrong number of args" is instead phrased in clear English.
+
+}
+
+\column{0.4}
+ \block{Goals for This Year}{
     \begin{itemize}
         \item Presently, we are working with a tool called Morse to provide an interactive user interface for Babel.
         \item Morse is a data visualization tool designed for professional development and debugging [2].
@@ -97,39 +136,6 @@ that encourages these principles and is a great tool for introducing students to
         \item We are aiming to have Morse stylize text based on good design practices for error messages [3].
     \end{itemize}
     }
-
-\column{0.4}
-    \block{Examples}{
-%\jwcomment{John's section.}
-%\emcomment{(even? "two"), (even? 2 3)}
-    Correct call: \\
-    \texttt{user=>(even? 2)} \\
-    \texttt{true} \\
-
-    Default Clojure Error Messages: \\
-    \texttt{user=>(even? "two")} \\
-    \texttt{Execution error (IllegalArgumentException) at user/eval2044 (REPL:1).}\\
-    \texttt{Argument must be an integer: two}
-
-
-    \texttt{user=>(even? 2 3)} \\
-    \texttt{Execution error (ArityException) at user/eval2046 (REPL:1).} \\ 
-     \texttt{Wrong number of args (2) passed to: clojure.core/even?} \\
-
-    Default Babel Error Messages in REPL: \\
-    \texttt{user=>(even? "two")}\\
-    \texttt{The first argument of (even? "two") was expected to be a number but is a string "two" instead.}\\
-    \texttt{In Clojure interactive session on line 1.}
-
-
-    \texttt{user=>(even? 2 3)} \\
-    \texttt{Wrong number of arguments in (even? 2 3): the function even? expects one argument but was given two arguments.}\\
-    \texttt{In Clojure interactive session on line 1.} \\
-
-    Babel (with Morse) Pop-up: \\
-    \includegraphics[width=\linewidth]{figures/ErrorViewer1Cropped.png}
-    \includegraphics[width=\linewidth]{figures/ErrorViewer2Cropped.png}
-}
 
 \column{0.3}
 \block{Progress This Year}{
@@ -166,11 +172,11 @@ Thanks to Joe Lane (Nubank) for guidance on tools for this project.
     \end{itemize}
 }
 
-\block{}{
-\begin{tikzfigure}
-    \includegraphics[width=0.55\linewidth]{figures/UMM logo.png}
-\end{tikzfigure}
-}
+%\block{}{
+%\begin{tikzfigure}
+%    \includegraphics[width=0.55\linewidth]{figures/UMM logo.png}
+%\end{tikzfigure}
+%}
 
 \end{columns}
 
