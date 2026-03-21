@@ -95,13 +95,24 @@ that encourages these principles and is a great tool for introducing students to
 }
 
 
-\block{Examples}{
+
+\column{0.4}
+ \block{Work in Progress This Year}{
+         \jscomment{Should the previously completed things, like the check functions and game framework, go here, or in a different section?}
+    \begin{itemize}
+   
+        \item My current task is to develop a system that automatically logs student activities in Clojure, especially around error messages.
+        \item Ideas discussed have included tracking when errors repeat on subsequent compilations, tracking which errors occur more or less frequently, and automatically compiling this data into reports so that error messages can be modified or individual help can be given to struggling students.
+        \item I have not yet begun writing this system, but one potential idea is to use the Clojure \texttt{tap>} function. This is the focus of my current investigation.
+    \end{itemize}
+    }
+    \block{Examples}{
 %\jwcomment{John's section.}
 %\emcomment{(even? "two"), (even? 2 3)}
     Correct call: \\
     \texttt{user=>(even? 2)} \\
     \texttt{true} \\
-\jscomment{This is probably much too wordy for what you were suggesting, and it definitely doesn't fit on the left column here without also moving something else over or cutting a lot from the other sections.}
+\jscomment{This is probably much too wordy for what you were suggesting, and it definitely doesn't fit on the left column without also moving something else over or cutting a lot from the other sections. What should we do about column organization?}
 
     Default Clojure Error Messages in REPL: \\
     \texttt{user=>(even? "two")} \\
@@ -127,19 +138,11 @@ The specific function call is stated in the error message, and the statement abo
 
 }
 
-\column{0.4}
- \block{Work in Progress This Year}{
-    \begin{itemize}
-        \jscomment{Should the previously completed things, like the check functions and game framework, go here, or in a different section?}
-        \item My current task is to develop a system that automatically logs student activities in Clojure, especially around error messages.
-        \item Ideas discussed have included tracking when errors repeat on subsequent compilations, tracking which errors occur more or less frequently, and automatically compiling this data into reports so that error messages can be modified or individual help can be given to struggling students.
-        \item I have not yet begun writing this system, but one potential idea is to use the Clojure \texttt{tap>} function. This is the focus of my current investigation.
-    \end{itemize}
-    }
 
 \column{0.3}
 \block{Progress This Year}{
 %\jwcomment{John's section.}
+\jscomment{I've forgotten what exactly you said to do with these sections. I know these need to be reworked somehow, though.}
     \begin{itemize}
         \item We improved internal tooling to allow us to easily select different types of error messages and test how they are presented.
         \item We implemented a skeleton framework for data flow to the interactive viewer.
@@ -147,6 +150,7 @@ The specific function call is stated in the error message, and the statement abo
         \item We created a simple viewer to format error messages based on labeled data.
     \end{itemize}
 }
+
 
 \block{Future Work}{
 %\jscomment{Jaydon's section.}
