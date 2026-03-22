@@ -89,6 +89,8 @@ Past work at Morris included the modifications to the error messages to make the
 
 \block{Our Project, Babel}{
 \emcomment{Add the example right here, combine with the Example building block}
+
+
     \begin{itemize}
         \item One focus of our research is development of a tool called Babel to modify Clojure error messages.
         \item Many error messages are directly replaced in the REPL with simplified, beginner-friendly versions.
@@ -96,6 +98,20 @@ Past work at Morris included the modifications to the error messages to make the
         \item Babel categorizes error data via dictionary lookup and specifications on Clojure function requirements to achieve this. 
         \item We developed and designed these specifications to capture as much information for the end user as possible, which is absent in default Clojure messages.
     \end{itemize}
+        Correct call: \\
+    \texttt{user=>(even? 2)} \\
+    \texttt{true} \\
+    Default Clojure Error Messages in REPL: \\
+    \texttt{user=>(even? 2 3)} \\
+    \texttt{Execution error (ArityException) at user/eval2046 (REPL:1).} \\ 
+     \texttt{Wrong number of args (2) passed to: clojure.core/even?} \\
+As in the previous error, the exact call to the failing function is not stated clearly. The only reference we get that \texttt{(even? 2 3)} was the exact call that failed was the \texttt{clojure.core/even?}. This message may be ambiguous to a beginner if they called this function in multiple places.
+
+    Default Babel Error Messages in REPL: \\
+    \texttt{user=>(even? 2 3)} \\
+    \texttt{Wrong number of arguments in (even? 2 3): the function even? expects one argument but was given two arguments.}\\
+    \texttt{In Clojure interactive session on line 1.} \\
+The specific function call is stated in the error message, and the statement about "wrong number of args" is instead phrased in clear English.
 }
 
 
@@ -110,25 +126,7 @@ Past work at Morris included the modifications to the error messages to make the
         \item I have not yet begun writing this system, but one potential idea is to use the Clojure \texttt{tap>} function. This is the focus of my current investigation.
     \end{itemize}
     }
-    \block{Examples}{
-%\jwcomment{John's section.}
-%\emcomment{(even? "two"), (even? 2 3)}
-    Correct call: \\
-    \texttt{user=>(even? 2)} \\
-    \texttt{true} \\
-    Default Clojure Error Messages in REPL: \\
-    \texttt{user=>(even? 2 3)} \\
-    \texttt{Execution error (ArityException) at user/eval2046 (REPL:1).} \\ 
-     \texttt{Wrong number of args (2) passed to: clojure.core/even?} \\
-As in the previous error, the exact call to the failing function is not stated clearly. The only reference we get that \texttt{(even? 2 3)} was the exact call that failed was the \texttt{clojure.core/even?}. This message may be ambiguous to a beginner if they called this function in multiple places.
 
-    Default Babel Error Messages in REPL: \\
-    \texttt{user=>(even? 2 3)} \\
-    \texttt{Wrong number of arguments in (even? 2 3): the function even? expects one argument but was given two arguments.}\\
-    \texttt{In Clojure interactive session on line 1.} \\
-The specific function call is stated in the error message, and the statement about "wrong number of args" is instead phrased in clear English.
-
-}
 
 
 \column{0.3}
