@@ -63,13 +63,14 @@ Past work at Morris included the modifications to the error messages to make the
 %	\item \emcomment{Includes reasons to teach FP to beginners}
 	\item Clojure is a Lisp implemented in Java that runs in the JVM.
 	\item Lisp languages have a rich history of being introduced early in programming education [4].
-	\item It emphasizes breaking problems into smaller, manageable, easy-to-combine pieces. \emcomment{need to say something about functions being first-class citizens}
-%promotes a more declarative programming style. Which is where you tell it what you want to happen rather than giving it a list of steps to follow.
+    \item In Clojure, functions are first-class citizens, which means functions can be declared, manipulated, and passed as arguments like most other data types.
+	\item This approach encourages solving problems by using functions in a nested manner, or manipulating and creating functions to be used temporarily. \jscomment{not sure if this is the right direction to go in}
+    %promotes a more declarative programming style. Which is where you tell it what you want to happen rather than giving it a list of steps to follow.
 	\item It builds a strong foundation for students in subjects like recursion, higher-order functions, immutable data, and problem decomposition.
 %    \item Clojure is a functional language
 %Lisp-based language 
 %that encourages these principles and is a great tool for introducing students to functional programming.
-    \item It has a simple prefix notation syntax for fucntion calls and special forms that's consistent across the language: \texttt{(+ 2 3), (filter odd? [1 2 3])}.
+    \item It has a simple prefix notation syntax for function calls and special forms that's consistent across the language: \texttt{(+ 2 3), (filter odd? [1 2 3])}.
     \item It uses an interactive Read-Evaluate-Print-Loop (REPL) environment
 %: the user types some code, the system evaluates it and prints the answer.
     \end{itemize}
@@ -79,17 +80,16 @@ Past work at Morris included the modifications to the error messages to make the
 %\tkcomment{Tristan's section}
 \emcomment{Change discussion to take into account that your target audience knows what Java is}
     \begin{itemize}
-    \item Error messages are understandable to experienced developers, but have terminology that does not make sense to beginner programmers.
-    \item Clojure code is compiled into a more common language, Java. It is a more complex language whose data types and features are not known to beginner programmers. 
-   \item By the time Clojure code is executed, it is Java code, so Clojure errors appear as Java errors.
+    \item Clojure code is compiled into Java. It is a more complex language whose data types and features are not known to beginner programmers.
+    \item By the time Clojure code is executed, it is Java code, so Clojure errors appear as Java errors.
+    \item Because the errors are Java errors, but the code is written in Clojure, this discrepancy can be confusing, in addition to the fact that the messages themselves are frequently unhelpful.
 %\emcomment{The target audience doesn't know the difference.}
-    \item Error messages include Java error types and a Java-phrased cause, as well as a Clojure location.
+\jscomment{I feel like I need to go into more detail here, but I'm not sure which details to give.}
+    % \item Error messages include Java error types and a Java-phrased cause, as well as a Clojure location.
     \end{itemize}
 }
 
 \block{Our Project, Babel}{
-\emcomment{Add the example right here, combine with the Example building block}
-
 
     \begin{itemize}
         \item One focus of our research is development of a tool called Babel to modify Clojure error messages.
