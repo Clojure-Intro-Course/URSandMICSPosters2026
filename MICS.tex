@@ -78,7 +78,6 @@ Past work at Morris included the modifications to the error messages to make the
 
  \block{Clojure Error Messages}{
 %\tkcomment{Tristan's section}
-\emcomment{Change discussion to take into account that your target audience knows what Java is}
     \begin{itemize}
     \item Clojure code is compiled into Java. It is a more complex language whose data types and features are not known to beginner programmers.
     \item By the time Clojure code is executed, it is Java code, so Clojure errors appear as Java errors.
@@ -105,14 +104,13 @@ Past work at Morris included the modifications to the error messages to make the
     \texttt{user=>(even? 2 3)} \\
     \texttt{Execution error (ArityException) at user/eval2046 (REPL:1).} \\ 
      \texttt{Wrong number of args (2) passed to: clojure.core/even?} \\
-As in the previous error, the exact call to the failing function is not stated clearly. The only reference we get that \texttt{(even? 2 3)} was the exact call that failed was the \texttt{clojure.core/even?}. This message may be ambiguous to a beginner if they called this function in multiple places.
+As in the previous error, the exact call to the failing function is not stated clearly. The only reference we get that \texttt{(even? 2 3)} was the exact call that failed was the \texttt{clojure.core/even?}. This message may be ambiguous to a beginner if they called this function in multiple places. \\
 
     Default Babel Error Messages in REPL: \\
     \texttt{user=>(even? 2 3)} \\
-    \texttt{Wrong number of arguments in (even? 2 3): the function even? expects one argument but was given two arguments.}\\
+    \texttt{Wrong number of arguments in (even? 2 3): the function even? expects one argument but was given two arguments.} \\
     \texttt{In Clojure interactive session on line 1.} \\
-The specific function call is stated in the error message, and the statement about "wrong number of args" is instead phrased in clear English.
-}
+The specific function call is stated in the error message, and the statement about "wrong number of args" is instead phrased in clear English. }
 
 
 
@@ -125,16 +123,39 @@ The specific function call is stated in the error message, and the statement abo
     \end{itemize}
     }
  \block{Examples}{
-    Check functions:
+    Check functions: \\
+   All three of these return strings, not boolean values. The returned string tells you whether the test passed or failed, as well as what was tested. \\
+   \texttt{check-equal} is the simplest. It tells you whether two values are equal. \\
+\texttt{=> (check.fns/check-equal "hello" "hello")
+"Test (= \"hello\" \"hello\") passed"} \\
+\texttt{=> (check.fns/check-equal "hello" "goodbye")
+"Test (= \"hello\" \"goodbye\") failed"} \\
+\texttt{check-range} checks whether a number is between two other numbers, inclusive, in the order of number, min, max. \\
+\texttt{=> (check.fns/check-range 5 0 10)
+"Test (<= 0 5 10) passed"} \\
+\texttt{=> (check.fns/check-range 5 0 4)
+"Test (<= 0 5 4) failed"} \\
+\texttt{check-precision} checks whether two numbers are within a certain distance of each other, in order of expected, actual, precision.
+\texttt{=> (check.fns/check-precision 1.1 1 0.1)
+"Test passed: 1 is within 0.1 of 1.1"} \\
+\texttt{=> (check.fns/check-precision 2 1 0.3)
+"Test failed: 1 is not within 0.3 of 2"} \\
+Notice how with the check-range and check-precision functions, I've recreated the format of the internal function call, to show students what is really happening. \\
 
-    Game framework:
-    This example is a simple number guessing game.
+    Game framework: \\
+    This example is a simple number guessing game. \\
 
-    This example is my tic-tac-toe game.
-    \texttt{(check.game/game check.tic-tac-toe/game-map)}
-    This line calls the \texttt{game} function with the argument of \texttt{game-map}, which is a map that describes the game. This is all you need to create a game with this system.
-
-}
+    This example is my tic-tac-toe game. \\
+    \texttt{=> (check.game/game check.tic-tac-toe/game-map)} \\
+    This line calls the \texttt{game} function with the argument of \texttt{game-map}, which is a map that describes the game. This is all you need to create a game with this system. \\
+    \texttt{Possible commands: tl, tm, tr, ml, mm, mr, bl, bm, br
+(tl for Top Left, etc.) 
+press Control+D to quit
+tl
+0 _ _
+_ _ _
+_ 1 _} \\
+In this example I played in the top left square, and the "enemy" (which chooses randomly) played in the bottom middle square. }
 
 
 
