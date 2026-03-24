@@ -64,7 +64,7 @@ Past work at Morris included the modifications to the error messages to make the
 	\item Clojure is a Lisp implemented in Java that runs in the JVM.
 	\item Lisp languages have a rich history of being introduced early in programming education [4].
     \item In Clojure, functions are first-class citizens, which means functions can be declared, manipulated, and passed as arguments like most other data types.
-	\item This approach encourages solving problems by using functions in a nested manner, or manipulating and creating functions to be used temporarily. \jscomment{not sure if this is the right direction to go in}
+	\item This approach encourages solving problems by using functions in a nested manner, or manipulating and creating functions to be used temporarily.
     %promotes a more declarative programming style. Which is where you tell it what you want to happen rather than giving it a list of steps to follow.
 	\item It builds a strong foundation for students in subjects like recursion, higher-order functions, immutable data, and problem decomposition.
 %    \item Clojure is a functional language
@@ -160,25 +160,23 @@ In this example I played in the top left square, and the "enemy" (which chooses 
 
 
 \column{0.3}
-\block{Progress This Year}{
-%\jwcomment{John's section.}
+\block{Challenges}{
 \jscomment{Challenges + future work}
     \begin{itemize}
-        \item We improved internal tooling to allow us to easily select different types of error messages and test how they are presented.
-        \item We implemented a skeleton framework for data flow to the interactive viewer.
-        \item We created a system for labeling parts of an error message to be able to use different formats for different parts.
-        \item We created a simple viewer to format error messages based on labeled data.
+        \item An issue currently in consideration came up when I was writing the tic-tac-toe example game.
+        \item It is possible for a student game to enter into an infinite loop, and there isn't a good way to handle this at the moment.
+        \item One potential solution is to put the game on a thread that times out.
+        \item I'm currently looking into a Clojure system called futures to do this.
     \end{itemize}
 }
 
 
 \block{Future Work}{
-%\jscomment{Jaydon's section.}
     \begin{itemize}
-        \item We would like to develop more Morse viewers for other information provided in error messages, such as stack traces and Java errors, to allow users to gather information about different parts of an error through Morse.
-        \item We are looking to conduct usability studies on displaying error messages via Morse in the future.
-        \item We also want to explore integrating Morse viewers into IDEs such as Visual Studio Code for workflow refinements.
-        \item We are considering adding support for defining terms in messages via hover text, as well as providing more access to resources like documentation.
+        \item The next step for this project is to test with beginner programmers in a classroom setting.
+        \item This will be part of a larger research project, where I plan to write a system to automatically log relevant information about Babel's error messages and how helpful they are.
+        \item This would include things like which errors students cause, and how much these errors repeat, or whether they are resolved quickly.
+        \item I am looking into a function called \texttt{tap>}, which might be useful for this.
     \end{itemize}
 }
 
