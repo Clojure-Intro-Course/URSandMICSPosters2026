@@ -83,8 +83,8 @@ Past work at Morris included the modifications to the error messages to make the
     \item Clojure code is compiled into Java. It is a more complex language whose data types and features are not known to beginner programmers.
     \item By the time Clojure code is executed, it is Java code, so Clojure errors appear as Java errors.
     \item Because the errors are Java errors, but the code is written in Clojure, this discrepancy can be confusing, in addition to the fact that the messages themselves are frequently unhelpful.
-%\emcomment{The target audience doesn't know the difference.}
-\jscomment{I feel like I need to go into more detail here, but I'm not sure which details to give.}
+
+
     % \item Error messages include Java error types and a Java-phrased cause, as well as a Clojure location.
     \end{itemize}
 }
@@ -118,21 +118,30 @@ The specific function call is stated in the error message, and the statement abo
 
 \column{0.4}
  \block{Work in Progress This Year}{
-    \jscomment{Should the previously completed things, like the check functions and game framework, go here, or in a different section?}
     \begin{itemize}
    
-        \item My current task is to develop a system that automatically logs student activities in Clojure, especially around error messages.
-        \item Ideas discussed have included tracking when errors repeat on subsequent compilations, tracking which errors occur more or less frequently, and automatically compiling this data into reports so that error messages can be modified or individual help can be given to struggling students.
-        \item I have not yet begun writing this system, but one potential idea is to use the Clojure \texttt{tap>} function. This is the focus of my current investigation.
+        \item Most recently, I have completed a set of functions for testing that are more straightforward and lightweight than Clojure's built-in testing system. Examples of their use are listed below.
+        \item My current project is a framework for students to create simple games. It simulates mutability with atoms, so that the students only need to write a simple set of functions to create the game. Examples are shown below.
     \end{itemize}
     }
+ \block{Examples}{
+    Check functions:
+
+    Game framework:
+    This example is a simple number guessing game.
+
+    This example is my tic-tac-toe game.
+    \texttt{(check.game/game check.tic-tac-toe/game-map)}
+    This line calls the \texttt{game} function with the argument of \texttt{game-map}, which is a map that describes the game. This is all you need to create a game with this system.
+
+}
 
 
 
 \column{0.3}
 \block{Progress This Year}{
 %\jwcomment{John's section.}
-\jscomment{I've forgotten what exactly you said to do with these sections. I know these need to be reworked somehow, though.}
+\jscomment{Challenges + future work}
     \begin{itemize}
         \item We improved internal tooling to allow us to easily select different types of error messages and test how they are presented.
         \item We implemented a skeleton framework for data flow to the interactive viewer.
