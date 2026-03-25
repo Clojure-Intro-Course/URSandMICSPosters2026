@@ -169,11 +169,13 @@ In this example I played in the top left square, and the "enemy" (which chooses 
 
 
 \column{0.3}
-\block{Current Work and Challenges}{
+\block{Results and Current Work}{
 %\jscomment{Challenges + future work}
-\emcomment{Mention what you achieved}
+
     \begin{itemize}
-        \item It is possible for a student game to enter into an infinite recursion, and there isn't a good way to handle this at the moment.
+        \item Near the beginning of this year, I completed the checking functions, with the understanding that they would be used in an introductory class in the future.
+        \item I also implemented the game framework, allowing students to create their own games.
+        \item Unfortunately, it is possible for a student game to enter into an infinite recursion, and there isn't anything in place to handle this at the moment.
         \item One potential solution is to put the game on a thread that times out.  I'm currently looking into a Clojure system called \textit{futures} to do this.
     \end{itemize}
 }
