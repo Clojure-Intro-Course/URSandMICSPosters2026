@@ -62,7 +62,7 @@ Past work at Morris included the modifications to the error messages to make the
     \begin{itemize}
 %	\item \emcomment{Includes reasons to teach FP to beginners}
 	\item Clojure is a Lisp implemented in Java that runs in the JVM.
-	\item Lisp languages have a rich history of being introduced early in programming education [4].
+	\item Lisp languages have a rich history of being introduced early in programming education [2].
     \item In Clojure, functions are first-class citizens, which means functions can be declared, manipulated, and passed as arguments like most other data types.
 	\item This approach encourages solving problems by using functions in a nested manner, or manipulating and creating functions to be used temporarily.
     %promotes a more declarative programming style. Which is where you tell it what you want to happen rather than giving it a list of steps to follow.
@@ -91,10 +91,10 @@ Past work at Morris included the modifications to the error messages to make the
 \block{Our Project, Babel}{
 
     \begin{itemize}
-        \item One focus of our research is development of a tool called Babel to modify Clojure error messages.
+        \item One focus of our research is development of a tool called Babel to modify Clojure error messages [3,4].
         \item Many error messages are directly replaced in the REPL with simplified, beginner-friendly versions.
-        \item Errors on function calls provide more detailed information about expected arguments: their types, number, etc.
-        \item Babel categorizes error data via dictionary lookup and specifications on Clojure function requirements to achieve this. 
+        \item Errors on function calls give detailed information about expected arguments: types, position, etc.
+        \item Babel categorizes error data via dictionary lookup and specifications on Clojure function requirements. 
         \item We developed and designed these specifications to capture as much information for the end user as possible, which is absent in default Clojure messages.
     \end{itemize}
         Correct call: \\
@@ -104,9 +104,9 @@ Past work at Morris included the modifications to the error messages to make the
     \texttt{user=>(even? 2 3)} \\
     \texttt{Execution error (ArityException) at user/eval2046 (REPL:1).} \\ 
      \texttt{Wrong number of args (2) passed to: clojure.core/even?} \\
-As in the previous error, the exact call to the failing function is not stated clearly. The only reference we get that \texttt{(even? 2 3)} was the exact call that failed was the \texttt{clojure.core/even?}. This message may be ambiguous to a beginner if they called this function in multiple places. \\
+As in the previous error, the exact call to the failing function is not stated clearly. The only reference we get is the \texttt{clojure.core/even?}. \\
 
-    Default Babel Error Messages in REPL: \\
+    Babel Error Messages in REPL: \\
     \texttt{user=>(even? 2 3)} \\
     \texttt{Wrong number of arguments in (even? 2 3): the function even? expects one argument but was given two arguments.} \\
     \texttt{In Clojure interactive session on line 1.} \\
@@ -118,8 +118,10 @@ The specific function call is stated in the error message, and the statement abo
  \block{Work in Progress This Year}{
     \begin{itemize}
    
-        \item Most recently, I have completed a set of functions for testing that are more straightforward and lightweight than Clojure's built-in testing system. Examples of their use are listed below.
-        \item My current project is a framework for students to create simple games. It simulates mutability with atoms, so that the students only need to write a simple set of functions to create the game. Examples are shown below.
+        \item Most recently, I have completed a set of functions for testing that are more straightforward and lightweight than Clojure's built-in testing system, inspired by Beginner Student version of Racket used in How to Design Programs curriculum [5]. Examples of their use are listed below.
+        \item My current project is a framework for students to create simple games. It simulates mutability with atoms, so that the students only need to write a simple set of functions to create the game. 
+\emcomment{Students write pure functions, they don't directly manipulate the atoms - need to explain this, perhaps in a separate bullet point}
+Examples are shown below.
     \end{itemize}
     }
  \block{Examples}{
@@ -144,6 +146,7 @@ Notice how with the check-range and check-precision functions, I've recreated th
 
     Game framework: \\
     This example is a simple number guessing game. \\
+    \emcomment{Need to explain, briefly, what students provide and what's stored in the atom; explain that any plain-text game can be implemented this way}
 
     This example is my tic-tac-toe game. \\
     \texttt{=> (check.game/game check.tic-tac-toe/game-map)} \\
@@ -160,13 +163,13 @@ In this example I played in the top left square, and the "enemy" (which chooses 
 
 
 \column{0.3}
-\block{Challenges}{
-\jscomment{Challenges + future work}
+\block{Current Work and Challenges}{
+%\jscomment{Challenges + future work}
+\emcomment{Mention what you achieved}
     \begin{itemize}
-        \item An issue currently in consideration came up when I was writing the tic-tac-toe example game.
-        \item It is possible for a student game to enter into an infinite loop, and there isn't a good way to handle this at the moment.
-        \item One potential solution is to put the game on a thread that times out.
-        \item I'm currently looking into a Clojure system called futures to do this.
+        \item An issue currently in consideration came up when I was writing the tic-tac-toe example game. \emcomment{Not relevant}
+        \item It is possible for a student game to enter into an infinite recursion, and there isn't a good way to handle this at the moment.
+        \item One potential solution is to put the game on a thread that times out.  I'm currently looking into a Clojure system called \textit{futures} to do this.
     \end{itemize}
 }
 
@@ -181,16 +184,16 @@ In this example I played in the top left square, and the "enemy" (which chooses 
 }
 
 \block{Acknowledgments}{
- Thanks to Morris Academic Partnership (MAP) and the Undergraduate Research Opportunity (UROP) for funding this work. \\
-Thanks to Joe Lane (Nubank) for guidance on tools for this project. 
+ Thanks to Morris Academic Partnership (MAP) for supporting this project.\\
 }
 
 \block{References}{
     \begin{itemize}
         \item {[1]} \emph{clojure.org}
-        \item {[2]} Morse, Nubank \emph{https://github.com/nubank/morse}
-	\item {[3]} Tao Dong, Kandarp Khandwala,  \textit{The Impact of ``Cosmetic'' Changes on the Usability of Error Messages}, 2019 CHI Conference on Human Factors in Computing Systems.
-	\item {[4]} Matthias Felleisen, Robert Bruce Findler, Matthew Flatt, and Shriram Krishnamurthi \textit{The Structure and Interpretation of the Computer Science Curriculum},  Journal of Functional Programming, 2004.
+	\item {[2]} Matthias Felleisen, Robert Bruce Findler, Matthew Flatt, and Shriram Krishnamurthi \textit{The Structure and Interpretation of the Computer Science Curriculum},  Journal of Functional Programming, 2004.
+	\item{[3]} Myeongjae Song and Elena Machkasova \textit{Improving Clojure Error Messages for Programming Novices with clojure.spec} Midwest Instruction and Computing Symposium (MICS) 2017
+	\item{[4]} Charlot Shaw \textit{Implementing Novice Friendly Error Messages in Clojure} Midwest Instruction and Computing Symposium (MICS) 2018
+	\item{[5]} Matthias Felleisen, Robert Bruce Findler, Matthew Flatt, Shriram Krishnamurthi \textit{How to Design Programs}, Second Edition, https://htdp.org/2023-3-6/Book/index.html
     \end{itemize}
 }
 
