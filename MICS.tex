@@ -175,8 +175,14 @@ In this example I played in the top left square, and the "enemy" (which chooses 
     \begin{itemize}
         \item Near the beginning of this year, I completed the checking functions, with the understanding that they would be used in an introductory class in the future.
         \item I also implemented the game framework, allowing students to create their own games.
+        \item The current plan is for this game to be a project in the introductory class.
+        \item There will be two options for this project: a one-player game or a two-player game.
+        \item In a one-player game, the \texttt{win?} function will only need to check if one player has won.
+        \item In a two-player game, the \texttt{win?} function needs to check both players.
+        \item \texttt{enemy-turn} will also need to be defined, to simulate the enemy's turn.
         \item Unfortunately, it is possible for a student game to enter into an infinite recursion, and there isn't anything in place to handle this at the moment.
-        \item One potential solution is to put the game on a thread that times out.  I'm currently looking into a Clojure system called \textit{futures} to do this.
+        \item One potential solution is to put the game on a thread that times out.  
+        \item I'm currently looking into a Clojure system called \textit{futures} to do this.
     \end{itemize}
 }
 
@@ -185,7 +191,9 @@ In this example I played in the top left square, and the "enemy" (which chooses 
     \begin{itemize}
         \item The next step for this project is to test with beginner programmers in a classroom setting.
         \item This will be part of a larger research project, where I plan to write a system to automatically log relevant information about Babel's error messages and how helpful they are.
-        \item This would include things like which errors students cause, and how much these errors repeat, or whether they are resolved quickly.
+        \item This would include data such as:
+        \item Which errors students experience when working with their code?
+        \item Which errors occur repeatedly with no sign of being resolved, and which ones are solved quickly?
         \item I am looking into a function called \texttt{tap>}, which might be useful for this.
     \end{itemize}
 }
@@ -202,6 +210,7 @@ In this example I played in the top left square, and the "enemy" (which chooses 
 	\item{[4]} Charlot Shaw \textit{Implementing Novice Friendly Error Messages in Clojure} Midwest Instruction and Computing Symposium (MICS) 2018
 	\item{[5]} Matthias Felleisen, Robert Bruce Findler, Matthew Flatt, Shriram Krishnamurthi \textit{How to Design Programs}, Second Edition, https://htdp.org/2023-3-6/Book/index.html
     \end{itemize}
+    
 }
 
 %\block{}{
