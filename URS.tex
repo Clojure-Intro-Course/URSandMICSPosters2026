@@ -10,7 +10,7 @@
 \usepackage{graphicx}
 \usepackage{authblk}
 \usepackage{color}
-\usepackage[all]{xy}
+% \usepackage[all]{xy}
 
 \usetheme{board}
 
@@ -25,15 +25,12 @@
 %\newcommand{\comment}[1]{}
 % for color names see https://www.overleaf.com/learn/latex/Using_colors_in_LaTeX
 \newcommand{\emcomment}[1]{\textcolor{ForestGreen}{\comment{Elena: {#1}}}}
-\newcommand{\todo}[1]{\textcolor{blue}{\comment{To Do: {#1}}}}
-\newcommand{\tkcomment}[1]{\textcolor{Teal}{\comment{Tristan: {#1}}}}
-\newcommand{\jscomment}[1]{\textcolor{olive}{\comment{Jaydon: {#1}}}}
-\newcommand{\jwcomment}[1]{\textcolor{violet}{\comment{John: {#1}}}}
 
-\title{Breaking Down Terminology of Clojure Error Messages for Beginner Programmers.}
-\author[1]{John Walbran}
-\author[1]{Jaydon Stanislowski}
-\author[1]{Tristan Kalvoda}
+\newcommand{\jscomment}[1]{\textcolor{magenta}{\comment{James: {#1}}}}
+
+
+\title{Developing a framework for text-based game development for beginners in Clojure}
+\author[1]{James Swearingen}
 \author[1]{Elena Machkasova (adviser)}
 \date{\today}
 \affil[1]{Division of Science and Mathematics, University of Minnesota, Morris}
@@ -49,130 +46,179 @@
 \maketitle
 
 \block{Abstract}{
-The Clojure programming language has educational potential for beginner programmers due to its clean, simple syntax and its strong focus on functional programming, an important aspect of CSci education. However, one weakness of Clojure lies in its error messages, which are messages that programmers receive when a program goes wrong. The terminology and shorthands used to convey necessary information for understanding the error are often confusing to novices. The issue is exacerbated by the fact that the error messages are phrased in terms of the underlying programming language – Java – which beginner programmers may typically be unfamiliar with. A research group at UMN Morris is developing a tool, called Babel, that replaces the language's default error messages with less jargon-heavy forms. This year, we started utilizing a graphical interface for viewing Clojure data to highlight the important details and terminology via context-based formatting choices, designed to make it possible for users to easily explore the reasons for the error and get access to relevant resources. We present our work-in-progress design of displaying error messages and discuss its potential benefits for new learners. 
+Clojure is a relatively new functional Lisp-like programming language that is used in industry and is supported by a community of developers. It is also a promising language for a beginner classroom due to its simple syntax, focus on small functions and on recursive algorithms, and data that’s immutable by default. However, there are gaps that make its adoption challenging. Debugging in Clojure can be unintuitive, because Clojure errors are exceptions in the underlying Java language. They frequently contain terminology intended for experienced developers, leaving out important context.
+
+Past work at Morris included the modifications to the error messages to make them understandable by beginners, but in order to perform usability testing with the target audience the error messages need to be incorporated into a simple development environment. This project is a continuation of an ongoing research, focusing on developing such an environment.
+
+% My work to be presented at MICS is focused on developing a framework for students to create simple text-based interactive games. The framework handles modifications to the game state while allowing students to write functions to describe the game state transformations without directly using mutability. Additionally, I am working on a set of simple functions that allow students to test their code without using sophisticated testing engines. This environment is inspired by a similar environment in the Racket programming language successfully used in introductory programming classes, although at this point we are not including graphical features used in Racket.
+
+% My poster will present examples of uses of the environment. It will also discuss implementation challenges and their solutions. 
 %\emcomment{Needs to be shortened and changed to match this year's work}
 }
 \begin{columns}
 \column{0.3}
         \block{Overview of Functional Programming and Clojure}{
 %\tkcomment{Tristan's section}
+\jscomment{This definitely needs some fixes; I don't expect anyone to know what a Lisp is, or the JVM.}
     \begin{itemize}
 %	\item \emcomment{Includes reasons to teach FP to beginners}
-	\item Functional programming has a rich history of being introduced early in programming education [4].
-	\item It emphasizes breaking problems into smaller, manageable, easy-to-combine pieces.
-%promotes a more declarative programming style. Which is where you tell it what you want to happen rather than giving it a list of steps to follow.
+	\item Clojure is a Lisp implemented in Java that runs in the JVM.
+	\item Lisp languages have a rich history of being introduced early in programming education [2].
+    \item In Clojure, functions are first-class citizens, which means functions can be declared, manipulated, and passed as arguments like most other data types.
+	\item This approach encourages solving problems by using functions in a nested manner, or manipulating and creating functions to be used temporarily.
+    %promotes a more declarative programming style. Which is where you tell it what you want to happen rather than giving it a list of steps to follow.
 	\item It builds a strong foundation for students in subjects like recursion, higher-order functions, immutable data, and problem decomposition.
-    \item Clojure is a functional language
+%    \item Clojure is a functional language
 %Lisp-based language 
-that encourages these principles and is a great tool for introducing students to functional programming.
-    \item It has a simple, minimal syntax with prefix notation in statements and statements are surrounded by parentheses: \texttt{(+ 2 3)} is the way to write $2 + 3$.
-    \item It uses an interactive Read-Evaluate-Print-Loop (REPL) environment: the user types some code, the system evaluates it and prints the answer.
+%that encourages these principles and is a great tool for introducing students to functional programming.
+    \item It has a simple prefix notation syntax for function calls and special forms that's consistent across the language: \texttt{(+ 2 3), (filter odd? [1 2 3])}.
+    \item It uses an interactive Read-Evaluate-Print-Loop (REPL) environment
+%: the user types some code, the system evaluates it and prints the answer.
     \end{itemize}
 }
 
  \block{Clojure Error Messages}{
 %\tkcomment{Tristan's section}
     \begin{itemize}
-    \item Error messages are understandable to experienced developers, but have terminology that does not make sense to beginner programmers.
-    \item Clojure code is compiled into a more common language, Java. It is a more complex language whose data types and features are not known to beginner programmers. 
-   \item By the time Clojure code is executed, it is Java code, so Clojure errors appear as Java errors.
-%\emcomment{The target audience doesn't know the difference.}
-    \item Error messages include Java error types and a Java-phrased cause, as well as a Clojure location.
+    \item Clojure code is compiled into Java. It is a more complex language whose data types and features are not known to beginner programmers.
+    \item By the time Clojure code is executed, it is Java code, so Clojure errors appear as Java errors, along with a location in Clojure and an associated message that describes the error.
+    \item Because the errors are Java errors, but the code and location are written in Clojure, this discrepancy can be confusing, in addition to the fact that the messages themselves are frequently unhelpful.
+
+
+    % \item Error messages include Java error types and a Java-phrased cause, as well as a Clojure location.
     \end{itemize}
 }
 
 \block{Our Project, Babel}{
+
     \begin{itemize}
-        \item One focus of our research is development of a tool called Babel to modify Clojure error messages.
+        \item One focus of our research is development of a tool called Babel to modify Clojure error messages [3,4].
         \item Many error messages are directly replaced in the REPL with simplified, beginner-friendly versions.
-        \item Errors on function calls provide more detailed information about expected arguments: their types, number, etc.
-        \item Babel categorizes error data via dictionary lookup and specifications on Clojure function requirements to achieve this. 
+        \item Errors on function calls give detailed information about expected arguments: types, position, etc.
+        \item Babel categorizes error data via dictionary lookup and specifications on Clojure function requirements. 
         \item We developed and designed these specifications to capture as much information for the end user as possible, which is absent in default Clojure messages.
     \end{itemize}
-}
-
-\block{Goals for This Year}{
-    \begin{itemize}
-        \item Presently, we are working with a tool called Morse to provide an interactive user interface for Babel.
-        \item Morse is a data visualization tool designed for professional development and debugging [2].
-        \item In the past, we succeeded in integrating Morse with Babel. Now, we are modifying information flow between the tools to provide Morse with more capabilities.
-        \item We are aiming to have Morse stylize text based on good design practices for error messages [3].
-    \end{itemize}
-    }
-
-\column{0.4}
-    \block{Examples}{
-%\jwcomment{John's section.}
-%\emcomment{(even? "two"), (even? 2 3)}
-    Correct call: \\
+        Correct call: \\
     \texttt{user=>(even? 2)} \\
     \texttt{true} \\
-
-    Default Clojure Error Messages: \\
-    \texttt{user=>(even? "two")} \\
-    \texttt{Execution error (IllegalArgumentException) at user/eval2044 (REPL:1).}\\
-    \texttt{Argument must be an integer: two}
-
-
+    Default Clojure Error Messages in REPL: \\
     \texttt{user=>(even? 2 3)} \\
     \texttt{Execution error (ArityException) at user/eval2046 (REPL:1).} \\ 
      \texttt{Wrong number of args (2) passed to: clojure.core/even?} \\
+As in the previous error, the exact call to the failing function is not stated clearly. The only reference we get is the \texttt{clojure.core/even?}. \\
 
-    Default Babel Error Messages in REPL: \\
-    \texttt{user=>(even? "two")}\\
-    \texttt{The first argument of (even? "two") was expected to be a number but is a string "two" instead.}\\
-    \texttt{In Clojure interactive session on line 1.}
-
-
+    Babel Error Messages in REPL: \\
     \texttt{user=>(even? 2 3)} \\
-    \texttt{Wrong number of arguments in (even? 2 3): the function even? expects one argument but was given two arguments.}\\
+    \texttt{Wrong number of arguments in (even? 2 3): the function even? expects one argument but was given two arguments.} \\
     \texttt{In Clojure interactive session on line 1.} \\
+The specific function call is stated in the error message, and the statement about "wrong number of args" is instead phrased in clear English. }
 
-    Babel (with Morse) Pop-up: \\
-    \includegraphics[width=\linewidth]{figures/ErrorViewer1Cropped.png}
-    \includegraphics[width=\linewidth]{figures/ErrorViewer2Cropped.png}
-}
+
+
+\column{0.4}
+ \block{Work in Progress This Year}{
+    \begin{itemize}
+   
+        \item Most recently, I have completed a set of functions for testing that are more straightforward and lightweight than Clojure's built-in testing system, inspired by Beginner Student version of Racket used in How to Design Programs curriculum [5]. Examples of their use are listed below.
+        \item My current project is a framework for students to create simple games. It simulates mutability with atoms, so that the students only need to write a simple set of functions to create the game. 
+        \item The only things a student needs to write are pure functions. The framework handles the atoms behind the scenes, and only requires a map of game info and functions.
+    \end{itemize}
+    }
+ \block{Examples}{
+    Check functions: \\
+   All three of these return strings, not boolean values. The returned string tells you whether the test passed or failed, as well as what was tested. \\ \\
+\texttt{check-equal} is the simplest. It tells you whether two values are equal.\\
+\texttt{=> (check.fns/check-equal "hello" "hello")} \\
+\texttt{"Test (= \textbackslash"hello\textbackslash" \textbackslash"hello\textbackslash") passed"} \\
+\texttt{=> (check.fns/check-equal "hello" "goodbye")} \\
+\texttt{"Test (= \textbackslash"hello\textbackslash" \textbackslash"goodbye\textbackslash") failed"} \\ \\
+\texttt{check-range} checks whether a number is between two other numbers, inclusive, in the order of number, min, max. \\
+\texttt{=> (check.fns/check-range 5 0 10)} \\
+\texttt{"Test (<= 0 5 10) passed"} \\
+\texttt{=> (check.fns/check-range 5 0 4)} \\
+\texttt{"Test (<= 0 5 4) failed"} \\ \\
+\texttt{check-precision} checks whether two numbers are within a certain distance of each other, in order of expected, actual, precision. \\
+\texttt{=> (check.fns/check-precision 1.1 1 0.1)} \\
+\texttt{"Test passed: 1 is within 0.1 of 1.1"} \\
+\texttt{=> (check.fns/check-precision 2 1 0.3)} \\
+\texttt{"Test failed: 1 is not within 0.3 of 2"} \\
+Notice how with the check-range and check-precision functions, I've recreated the format of the internal function call, to show students what is really happening. \\
+
+    Game framework: \\
+    To create a game, students need to give the framework a few things:
+    \begin{itemize}
+    \item A string under the keyword \texttt{:commands}, which describes which commands are valid for the game, so players know what to do.
+    \item A map under the keyword \texttt(:initial-state), which is used to set the state of the game before any commands are given.
+    \item The function \texttt{(update-game [state command])}, to update the game state based on the player's command.
+    \item The function \texttt{(draw-state [state])}, which should print a representation of the game state to the console.
+    \item The function \texttt{(win? [state player])}, which should return true if the given player has won the game, and false otherwise. The framework will skip the second player if there is none, as students have the choice to create one-player or two-player games.
+    \end{itemize}
+    This framework allows for any plain-text game to be implemented without dealing with the complex nature of atoms in Clojure. \\
+
+    This example is a recreation of tic-tac-toe. \\
+    \texttt{=> (check.game/game check.tic-tac-toe/game-map)} \\
+    This line calls the \texttt{game} function with the argument of \texttt{game-map}, which is a map that describes the game. This is all you need to create a game with this system. \\
+\texttt{Possible commands: tl, tm, tr, ml, mm, mr, bl, bm, br}
+\texttt{(tl for Top Left, etc.)} \\
+\texttt{press Control+D to quit} \\
+\texttt{tl} \\
+\texttt{0 \_ \_} \\
+\texttt{\_ \_ \_ } \\
+\texttt{\_ 1 \_ } \\
+In this example I played in the top left square, and the "enemy" (which chooses randomly) played in the bottom middle square. }
+
+
 
 \column{0.3}
-\block{Progress This Year}{
-%\jwcomment{John's section.}
+\block{Results and Current Work}{
+%\jscomment{Challenges + future work}
+
     \begin{itemize}
-        \item We improved internal tooling to allow us to easily select different types of error messages and test how they are presented.
-        \item We implemented a skeleton framework for data flow to the interactive viewer.
-        \item We created a system for labeling parts of an error message to be able to use different formats for different parts.
-        \item We created a simple viewer to format error messages based on labeled data.
+        \item Near the beginning of this year, I completed the checking functions, with the understanding that they would be used in an introductory class in the future.
+        \item I also implemented the game framework, allowing students to create their own games.
+        \item The current plan is for this game to be a project in the introductory class.
+        \item There will be two options for this project: a one-player game or a two-player game.
+        \item In a one-player game, the \texttt{win?} function will only need to check if one player has won.
+        \item In a two-player game, the \texttt{win?} function needs to check both players.
+        \item \texttt{enemy-turn} will also need to be defined, to simulate the enemy's turn.
+        \item Unfortunately, it is possible for a student game to enter into an infinite recursion, and there isn't anything in place to handle this at the moment.
+        \item One potential solution is to put the game on a thread that times out.  
+        \item I'm currently looking into a Clojure system called \textit{futures} to do this.
     \end{itemize}
 }
 
+
 \block{Future Work}{
-%\jscomment{Jaydon's section.}
     \begin{itemize}
-        \item We would like to develop more Morse viewers for other information provided in error messages, such as stack traces and Java errors, to allow users to gather information about different parts of an error through Morse.
-        \item We are looking to conduct usability studies on displaying error messages via Morse in the future.
-        \item We also want to explore integrating Morse viewers into IDEs such as Visual Studio Code for workflow refinements.
-        \item We are considering adding support for defining terms in messages via hover text, as well as providing more access to resources like documentation.
+        \item The next step for this project is to test with beginner programmers in a classroom setting.
+        \item This will be part of a larger research project, where I plan to write a system to automatically log relevant information about Babel's error messages and how helpful they are.
+        \item This would include data such as:
+        \item Which errors students experience when working with their code?
+        \item Which errors occur repeatedly with no sign of being resolved, and which ones are solved quickly?
+        \item I am looking into a function called \texttt{tap>}, which might be useful for this.
     \end{itemize}
 }
 
 \block{Acknowledgments}{
- Thanks to Morris Academic Partnership (MAP) and the Undergraduate Research Opportunity (UROP) for funding this work. \\
-Thanks to Joe Lane (Nubank) for guidance on tools for this project. 
+ Thanks to Morris Academic Partnership (MAP) for supporting this project.\\
 }
 
 \block{References}{
     \begin{itemize}
         \item {[1]} \emph{clojure.org}
-        \item {[2]} Morse, Nubank \emph{https://github.com/nubank/morse}
-	\item {[3]} Tao Dong, Kandarp Khandwala,  \textit{The Impact of ``Cosmetic'' Changes on the Usability of Error Messages}, 2019 CHI Conference on Human Factors in Computing Systems.
-	\item {[4]} Matthias Felleisen, Robert Bruce Findler, Matthew Flatt, and Shriram Krishnamurthi \textit{The Structure and Interpretation of the Computer Science Curriculum},  Journal of Functional Programming, 2004.
+	\item {[2]} Matthias Felleisen, Robert Bruce Findler, Matthew Flatt, and Shriram Krishnamurthi \textit{The Structure and Interpretation of the Computer Science Curriculum},  Journal of Functional Programming, 2004.
+	\item{[3]} Myeongjae Song and Elena Machkasova \textit{Improving Clojure Error Messages for Programming Novices with clojure.spec} Midwest Instruction and Computing Symposium (MICS) 2017
+	\item{[4]} Charlot Shaw \textit{Implementing Novice Friendly Error Messages in Clojure} Midwest Instruction and Computing Symposium (MICS) 2018
+	\item{[5]} Matthias Felleisen, Robert Bruce Findler, Matthew Flatt, Shriram Krishnamurthi \textit{How to Design Programs}, Second Edition, https://htdp.org/2023-3-6/Book/index.html
     \end{itemize}
+    
 }
 
-\block{}{
-\begin{tikzfigure}
-    \includegraphics[width=0.55\linewidth]{figures/UMM logo.png}
-\end{tikzfigure}
-}
+%\block{}{
+%\begin{tikzfigure}
+%    \includegraphics[width=0.55\linewidth]{figures/UMM logo.png}
+%\end{tikzfigure}
+%}
 
 \end{columns}
 
