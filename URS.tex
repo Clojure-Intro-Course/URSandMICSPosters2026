@@ -79,6 +79,7 @@ Past work at Morris included the modifications to the error messages to make the
 
  \block{Clojure Error Messages}{
 %\tkcomment{Tristan's section}
+\jscomment{Should we go back and take a look at the previous version of this section? I think we only changed it because of MICS.}
     \begin{itemize}
     \item Clojure code is compiled into Java. It is a more complex language whose data types and features are not known to beginner programmers.
     \item By the time Clojure code is executed, it is Java code, so Clojure errors appear as Java errors, along with a location in Clojure and an associated message that describes the error.
@@ -125,6 +126,7 @@ The specific function call is stated in the error message, and the statement abo
     \end{itemize}
     }
  \block{Examples}{
+    \jscomment{maybe modify some of this since I'm going to be demonstrating on my laptop?}
     Check functions: \\
    All three of these return strings, not boolean values. The returned string tells you whether the test passed or failed, as well as what was tested. \\ \\
 \texttt{check-equal} is the simplest. It tells you whether two values are equal.\\
