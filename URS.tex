@@ -151,8 +151,13 @@ The specific function call is stated in the error message, and the statement abo
 \texttt{=> (check.fns/check-precision 2 1 0.3)} \\
 \texttt{"Test failed: 1 is not within 0.3 of 2"} \\
 Notice how with the check-equal and check-range functions, I've recreated the format of the internal function call, to show students what is really happening. \\
-
     Game framework: \\
+    There are three different components to the game: 
+    \begin{itemize}
+    \item the framework I am writing,
+    \item the code that a student would write for their specific game, and
+    \item the experience of a player.
+    \end{itemize}
     To create a game, student programmers need to give the framework a few things:
     \begin{itemize}
     \item A string under the keyword \texttt{:commands}, which describes which commands are valid for the game, so players know what to do.
