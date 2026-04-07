@@ -63,10 +63,12 @@ Past work at Morris included the modifications to the error messages to make the
     \begin{itemize}
 	% \item \emcomment{Includes reasons to teach FP to beginners}
 	\item Clojure is a simple functional programming language.
+	\item Functional programming encourages solving problems with small building blocks called functions.
 	% \item Lisp languages have a rich history of being introduced early in programming education [2].
-    \item Functional languages are immutable, meaning that when a variable is created, it cannot be changed. % this phrasing feels strange but I'm not sure what else to call them
+    \item A functional language is designed for programming using function composition rather than directly changing variables in computer memory. 
+%Functional languages are immutable, meaning that when a variable is created, it cannot be changed. 
+% this phrasing feels strange but I'm not sure what else to call them
     % \item In Clojure, functions are first-class citizens, which means functions can be declared, manipulated, and passed as arguments like most other data types.
-	\item This approach encourages solving problems with small building blocks called functions.
     %promotes a more declarative programming style. Which is where you tell it what you want to happen rather than giving it a list of steps to follow.
 	\item Many functions in Clojure are \textit{higher-order functions,} which are functions that take other functions as arguments.
     \item An important type of function is one that always produces the same output for the same input, and has no other effects.
@@ -121,6 +123,7 @@ The specific function call is stated in the error message, and the statement abo
 
 \column{0.4}
  \block{Work in Progress This Year}{
+\emcomment{Add some explanation of how it's related to error messages work}
     \begin{itemize}
    
         \item Most recently, I have completed a set of functions for testing that are more straightforward and lightweight than Clojure's built-in testing system, inspired by Beginner Student version of Racket used in How to Design Programs curriculum [5]. Examples of their use are listed below.
@@ -128,7 +131,7 @@ The specific function call is stated in the error message, and the statement abo
         \item The only things a student needs to write are pure functions. The framework handles the atoms behind the scenes, and only requires a map of game info and functions.
     \end{itemize}
     }
- \block{Examples}{
+ \block{Examples \emcomment{Make the titles more concrete}}{
     \jscomment{maybe modify some of this since I'm going to be demonstrating on my laptop?}
     Check functions: \\
    All three of these return strings, not boolean values. The returned string tells you whether the test passed or failed, as well as what was tested. \\ \\
