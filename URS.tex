@@ -61,13 +61,15 @@ Past work at Morris included the modifications to the error messages to make the
 %\tkcomment{Tristan's section}
 \jscomment{This definitely needs some fixes; I don't expect anyone to know what a Lisp is, or the JVM.}
     \begin{itemize}
-%	\item \emcomment{Includes reasons to teach FP to beginners}
-	\item Clojure is a Lisp implemented in Java that runs in the JVM.
-	\item Lisp languages have a rich history of being introduced early in programming education [2].
-    \item In Clojure, functions are first-class citizens, which means functions can be declared, manipulated, and passed as arguments like most other data types.
-	\item This approach encourages solving problems by using functions in a nested manner, or manipulating and creating functions to be used temporarily.
+	% \item \emcomment{Includes reasons to teach FP to beginners}
+	\item Clojure is a simple functional programming language.
+	% \item Lisp languages have a rich history of being introduced early in programming education [2].
+    \item Functional languages are immutable, meaning that when a variable is created, it cannot be changed. % this phrasing feels strange but I'm not sure what else to call them
+    % \item In Clojure, functions are first-class citizens, which means functions can be declared, manipulated, and passed as arguments like most other data types.
+	\item This approach encourages solving problems with small building blocks called functions.
     %promotes a more declarative programming style. Which is where you tell it what you want to happen rather than giving it a list of steps to follow.
-	\item It builds a strong foundation for students in subjects like recursion, higher-order functions, immutable data, and problem decomposition.
+	\item Many functions in Clojure are \textit{higher-order functions,} which are functions that take other functions as arguments.
+    \item An important type of function is one that always produces the same output for the same input, and has no other effects.
 %    \item Clojure is a functional language
 %Lisp-based language 
 %that encourages these principles and is a great tool for introducing students to functional programming.
@@ -79,8 +81,9 @@ Past work at Morris included the modifications to the error messages to make the
 
  \block{Clojure Error Messages}{
 %\tkcomment{Tristan's section}
-\jscomment{Should we go back and take a look at the previous version of this section? I think we only changed it because of MICS.}
+% \jscomment{Should we go back and take a look at the previous version of this section? I think we only changed it because of MICS.}
     \begin{itemize}
+    \item Error messages are messages produced by a program when something goes wrong. A good error message should say what the problem is, and ideally make it clear how it should be fixed.
     \item Clojure code is compiled into Java. It is a more complex language whose data types and features are not known to beginner programmers.
     \item By the time Clojure code is executed, it is Java code, so Clojure errors appear as Java errors, along with a location in Clojure and an associated message that describes the error.
     \item Because the errors are Java errors, but the code and location are written in Clojure, this discrepancy can be confusing, in addition to the fact that the messages themselves are frequently unhelpful.
@@ -147,7 +150,7 @@ The specific function call is stated in the error message, and the statement abo
 Notice how with the check-equal and check-range functions, I've recreated the format of the internal function call, to show students what is really happening. \\
 
     Game framework: \\
-    To create a game, students need to give the framework a few things:
+    To create a game, student programmers need to give the framework a few things:
     \begin{itemize}
     \item A string under the keyword \texttt{:commands}, which describes which commands are valid for the game, so players know what to do.
     \item A map under the keyword \texttt(:initial-state), which is used to set the state of the game before any commands are given.
