@@ -136,10 +136,10 @@ The specific function call is stated in the error message, and the statement abo
     Check functions: \\
    All three of these return strings, not boolean values. The returned string tells you whether the test passed or failed, as well as what was tested. \\ \\
 \texttt{check-equal} is the simplest. It tells you whether two values are equal.\\
-\texttt{=> (check.fns/check-equal "hello" "hello")} \\
-\texttt{"Test (= \textbackslash"hello\textbackslash" \textbackslash"hello\textbackslash") passed"} \\
-\texttt{=> (check.fns/check-equal "hello" "goodbye")} \\
-\texttt{"Test (= \textbackslash"hello\textbackslash" \textbackslash"goodbye\textbackslash") failed"} \\ \\
+\texttt{=> (check.fns/check-equal 1 1)} \\
+\texttt{"Test (= 1 1) passed"} \\
+\texttt{=> (check.fns/check-equal 1 2)} \\
+\texttt{"Test (= 1 2) failed"} \\ \\
 \texttt{check-range} checks whether a number is between two other numbers, inclusive, in the order of number, min, max. \\
 \texttt{=> (check.fns/check-range 5 0 10)} \\
 \texttt{"Test (<= 0 5 10) passed"} \\
@@ -187,6 +187,7 @@ In this example I played in the top left square, and the "enemy" (which chooses 
 %\jscomment{Challenges + future work}
 
     \begin{itemize}
+        \item The error message modification system is mostly complete, so I have moved on to other parts of the project.
         \item Near the beginning of this year, I completed the checking functions, with the understanding that they would be used in an introductory class in the future.
         \item I also implemented the game framework, allowing students to create their own games.
         \item The current plan is for this game to be a project in the introductory class.
