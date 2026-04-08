@@ -163,8 +163,8 @@ Notice how with the check-equal and check-range functions, I've recreated the fo
     \item A string under the keyword \texttt{:commands}, which describes which commands are valid for the game, so players know what to do.
     \item A map under the keyword \texttt(:initial-state), which is used to set the state of the game before any commands are given.
     \item The function \texttt{(update-game [state command])}, to update the game state based on the player's command.
-    \item The function \texttt{(draw-state [state])}, which should print a representation of the game state to the console.
-    \item The function \texttt{(win? [state player])}, which should return true if the given player has won the game, and false otherwise. The framework will skip the second player if there is none, as students have the choice to create one-player or two-player games.
+    \item The function \texttt{(draw-state [state])}, which prints a representation of the game state to the console.
+    \item The function \texttt{(win? [state player])}, which returns true if the given player has won the game, and false otherwise. The framework will skip the second player if there is none, as students have the choice to create one-player or two-player games.
     \end{itemize}
     This framework allows for any plain-text game to be implemented without dealing with the complex nature of atoms in Clojure. \\
 
