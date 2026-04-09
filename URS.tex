@@ -62,15 +62,14 @@ Past work at Morris included the modifications to the error messages to make the
 % \jscomment{This definitely needs some fixes; I don't expect anyone to know what a Lisp is, or the JVM.}
     \begin{itemize}
 	% \item \emcomment{Includes reasons to teach FP to beginners}
-	\item Clojure is a simple functional programming language.
+	\item Clojure is a simple functional programming language [1].
 	\item Functional programming encourages solving problems with small building blocks called functions.
-	% \item Lisp languages have a rich history of being introduced early in programming education [2].
+	\item Functional languages have a rich history of being introduced early in programming education [2].
     \item A functional language is designed for programming using function composition rather than directly changing variables in computer memory. 
 %Functional languages are immutable, meaning that when a variable is created, it cannot be changed. 
 % this phrasing feels strange but I'm not sure what else to call them
     % \item In Clojure, functions are first-class citizens, which means functions can be declared, manipulated, and passed as arguments like most other data types.
     %promotes a more declarative programming style. Which is where you tell it what you want to happen rather than giving it a list of steps to follow.
-	\item Many functions in Clojure are \textit{higher-order functions,} which are functions that take other functions as arguments.
     \item An important type of function is one that always produces the same output for the same input, and has no other effects.
 %    \item Clojure is a functional language
 %Lisp-based language 
@@ -99,8 +98,8 @@ Past work at Morris included the modifications to the error messages to make the
 
     \begin{itemize}
         \item The goal of the project is to use Clojure in an introductory programming class. 
-%One focus of our research is development of a tool called Babel to modify Clojure error messages [3,4].
-        \item To address the error messages issues, Babel provides a way to directly replace error messages in the REPL with simplified, beginner-friendly versions.
+%One focus of our research is development of a tool called Babel to modify Clojure error messages [4,5].
+        \item To address the error messages issues, Babel provides a way to directly replace error messages in the REPL with simplified, beginner-friendly versions. [4,5]
         \item Errors on function calls give detailed information about expected arguments: types, position, etc.
         % \item Babel categorizes error data via dictionary lookup and specifications on Clojure function requirements. 
         % \item We developed and designed these specifications to capture as much information for the end user as possible, which is absent in default Clojure messages.
@@ -118,7 +117,10 @@ As in the previous error, the exact call to the failing function is not stated c
     \texttt{user=>(even? 2 3)} \\
     \texttt{Wrong number of arguments in (even? 2 3): the function even? expects one argument but was given two arguments.} \\
     \texttt{In Clojure interactive session on line 1.} \\
-The specific function call is stated in the error message, and the statement about "wrong number of args" is instead phrased in clear English. }
+The specific function call is stated in the error message, and the statement about "wrong number of args" is instead phrased in clear English. 
+
+\vspace*{0.15in}
+}
 
 
 
@@ -127,7 +129,7 @@ The specific function call is stated in the error message, and the statement abo
 % \emcomment{Add some explanation of how it's related to error messages work}
     \begin{itemize}
         \item With the completion of the error message replacement system, I have shifted the focus to other teaching tools for beginner programmers.
-        \item Most recently, I have completed a set of functions for testing that are more straightforward and lightweight than Clojure's built-in testing system, inspired by Beginner Student version of Racket used in How to Design Programs curriculum [5]. Examples of their use are listed below.
+        \item Most recently, I have completed a set of functions for testing that are more straightforward and lightweight than Clojure's built-in testing system, inspired by Beginner Student version of Racket used in How to Design Programs curriculum [3]. Examples of their use are listed below.
         \item My current project is a framework for students to create simple games. It simulates mutability with atoms, so that the students only need to write a simple set of functions to create the game. 
         \item The only things a student needs to write are pure functions. The framework handles the atoms behind the scenes, and only requires a map of game info and functions.
     \end{itemize}
@@ -176,7 +178,8 @@ This was done to show students what the function is doing internally, while stil
 \texttt{\_ 1 \_ } \\
 In this example I played in the top left square, and the "enemy" (which chooses randomly) played in the bottom middle square. 
 
-\vspace*{0.07in}}
+% \vspace*{0.07in}
+}
 
 
 
@@ -218,9 +221,9 @@ In this example I played in the top left square, and the "enemy" (which chooses 
     \begin{itemize}
         \item {[1]} \emph{clojure.org}
 	\item {[2]} Matthias Felleisen, Robert Bruce Findler, Matthew Flatt, and Shriram Krishnamurthi \textit{The Structure and Interpretation of the Computer Science Curriculum},  Journal of Functional Programming, 2004.
-	\item{[3]} Myeongjae Song and Elena Machkasova \textit{Improving Clojure Error Messages for Programming Novices with clojure.spec} Midwest Instruction and Computing Symposium (MICS) 2017
-	\item{[4]} Charlot Shaw \textit{Implementing Novice Friendly Error Messages in Clojure} Midwest Instruction and Computing Symposium (MICS) 2018
-	\item{[5]} Matthias Felleisen, Robert Bruce Findler, Matthew Flatt, Shriram Krishnamurthi \textit{How to Design Programs}, Second Edition, https://htdp.org/2023-3-6/Book/index.html
+    \item{[3]} Matthias Felleisen, Robert Bruce Findler, Matthew Flatt, Shriram Krishnamurthi \textit{How to Design Programs}, Second Edition, https://htdp.org/2023-3-6/Book/index.html
+	\item{[4]} Myeongjae Song and Elena Machkasova \textit{Improving Clojure Error Messages for Programming Novices with clojure.spec} Midwest Instruction and Computing Symposium (MICS) 2017
+	\item{[5]} Charlot Shaw \textit{Implementing Novice Friendly Error Messages in Clojure} Midwest Instruction and Computing Symposium (MICS) 2018
     \end{itemize}
 
     \vspace*{0.2in}
