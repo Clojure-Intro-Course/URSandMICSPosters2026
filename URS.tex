@@ -46,7 +46,7 @@
 \maketitle
 
 \block{Abstract}{
-Clojure is a relatively new functional Lisp-like programming language that is used in industry and is supported by a community of developers. It is also a promising language for a beginner classroom due to its simple syntax, focus on small functions and on recursive algorithms, and data that’s immutable by default. However, there are gaps that make its adoption challenging. Debugging in Clojure can be unintuitive, because Clojure errors are exceptions in the underlying Java language. They frequently contain terminology intended for experienced developers, leaving out important context.
+Clojure is a relatively new functional programming language that is used in industry and is supported by a community of developers. It is also a promising language for a beginner classroom due to its simple syntax, focus on small functions and on recursive algorithms, and data that’s immutable by default. However, there are gaps that make its adoption challenging. Debugging in Clojure can be unintuitive, because Clojure errors are exceptions in the underlying Java language. They frequently contain terminology intended for experienced developers, leaving out important context.
 
 Past work at Morris included the modifications to the error messages to make them understandable by beginners, but in order to perform usability testing with the target audience the error messages need to be incorporated into a simple development environment. This project is a continuation of an ongoing research, focusing on developing such an environment.
 
@@ -92,6 +92,7 @@ Past work at Morris included the modifications to the error messages to make the
 
     % \item Error messages include Java error types and a Java-phrased cause, as well as a Clojure location.
     \end{itemize}
+
 }
 
 \block{Our Project, Babel}{
@@ -119,7 +120,7 @@ As in the previous error, the exact call to the failing function is not stated c
     \texttt{In Clojure interactive session on line 1.} \\
 The specific function call is stated in the error message, and the statement about "wrong number of args" is instead phrased in clear English. 
 
-\vspace*{0.15in}
+\vspace*{0.145in}
 }
 
 
@@ -226,7 +227,7 @@ In this example I played in the top left square, and the "enemy" (which chooses 
 	\item{[5]} Charlot Shaw \textit{Implementing Novice Friendly Error Messages in Clojure} Midwest Instruction and Computing Symposium (MICS) 2018
     \end{itemize}
 
-    \vspace*{0.2in}
+    \vspace*{0.195in}
 }
 
 %\block{}{
