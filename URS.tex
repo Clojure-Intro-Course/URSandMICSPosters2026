@@ -59,7 +59,7 @@ Past work at Morris included the modifications to the error messages to make the
 \column{0.3}
         \block{Overview of Functional Programming and Clojure}{
 %\tkcomment{Tristan's section}
-\jscomment{This definitely needs some fixes; I don't expect anyone to know what a Lisp is, or the JVM.}
+% \jscomment{This definitely needs some fixes; I don't expect anyone to know what a Lisp is, or the JVM.}
     \begin{itemize}
 	% \item \emcomment{Includes reasons to teach FP to beginners}
 	\item Clojure is a simple functional programming language.
@@ -75,8 +75,8 @@ Past work at Morris included the modifications to the error messages to make the
 %    \item Clojure is a functional language
 %Lisp-based language 
 %that encourages these principles and is a great tool for introducing students to functional programming.
-    \item It has a simple prefix notation syntax for function calls and special forms that's consistent across the language: \texttt{(+ 2 3), (filter odd? [1 2 3])}.
-    \item It uses an interactive Read-Evaluate-Print-Loop (REPL) environment
+    \item Clojure has a simple prefix notation syntax for function calls and special forms that's consistent across the language: \texttt{(+ 2 3), (filter odd? [1 2 3])}.
+    \item It uses an interactive Read-Evaluate-Print-Loop (REPL) environment.
 %: the user types some code, the system evaluates it and prints the answer.
     \end{itemize}
 }
@@ -123,17 +123,17 @@ The specific function call is stated in the error message, and the statement abo
 
 
 \column{0.4}
- \block{Work in Progress This Year}{
-\emcomment{Add some explanation of how it's related to error messages work}
+ \block{Testing Setup and Game Development Engine for Beginners}{
+% \emcomment{Add some explanation of how it's related to error messages work}
     \begin{itemize}
-   
+        \item With the completion of the error message replacement system, I have shifted the focus to other teaching tools for beginner programmers.
         \item Most recently, I have completed a set of functions for testing that are more straightforward and lightweight than Clojure's built-in testing system, inspired by Beginner Student version of Racket used in How to Design Programs curriculum [5]. Examples of their use are listed below.
         \item My current project is a framework for students to create simple games. It simulates mutability with atoms, so that the students only need to write a simple set of functions to create the game. 
         \item The only things a student needs to write are pure functions. The framework handles the atoms behind the scenes, and only requires a map of game info and functions.
     \end{itemize}
     }
- \block{Examples \emcomment{Make the titles more concrete}}{
-    \jscomment{maybe modify some of this since I'm going to be demonstrating on my laptop?}
+ \block{Examples of Interactions}{
+    % \jscomment{maybe modify some of this since I'm going to be demonstrating on my laptop?}
     Check functions: \\
    All three of these return strings, not boolean values. The returned string tells you whether the test passed or failed, as well as what was tested. \\ \\
 \texttt{check-equal} is the simplest. It tells you whether two values are equal.\\
@@ -151,7 +151,8 @@ The specific function call is stated in the error message, and the statement abo
 \texttt{"Test passed: 1 is within 0.1 of 1.1"} \\
 \texttt{=> (check.fns/check-precision 2 1 0.3)} \\
 \texttt{"Test failed: 1 is not within 0.3 of 2"} \\
-Notice how with the check-equal and check-range functions, I've recreated the format of the internal function call, to show students what is really happening. \\
+Notice how with the check-equal and check-range functions, I've recreated the format of the internal function call. \\
+This was done to show students what the function is doing internally, while still allowing simple testing. \\
     Game framework: \\
     There are three different components to the game: 
     \begin{itemize}
@@ -159,14 +160,8 @@ Notice how with the check-equal and check-range functions, I've recreated the fo
     \item the code that a student would write for their specific game, and
     \item the experience of a player.
     \end{itemize}
-    To create a game, student programmers need to give the framework a few things:
-    \begin{itemize}
-    \item A string under the keyword \texttt{:commands}, which describes which commands are valid for the game, so players know what to do.
-    \item A map under the keyword \texttt(:initial-state), which is used to set the state of the game before any commands are given.
-    \item The function \texttt{(update-game [state command])}, to update the game state based on the player's command.
-    \item The function \texttt{(draw-state [state])}, which prints a representation of the game state to the console.
-    \item The function \texttt{(win? [state player])}, which returns true if the given player has won the game, and false otherwise. The framework will skip the second player if there is none, as students have the choice to create one-player or two-player games.
-    \end{itemize}
+    To create a game, student programmers need to give the framework a few things: \\
+    The initial state, a string telling players what commands are valid, and a set of functions to update the game state and draw it at the end of each turn. \\
     This framework allows for any plain-text game to be implemented without dealing with the complex nature of atoms in Clojure. \\
 
     This example is a recreation of tic-tac-toe. \\
@@ -188,8 +183,7 @@ In this example I played in the top left square, and the "enemy" (which chooses 
 %\jscomment{Challenges + future work}
 
     \begin{itemize}
-        \item The error message modification system is mostly complete, so I have moved on to other parts of the project.
-        \item Near the beginning of this year, I completed the checking functions, with the understanding that they would be used in an introductory class in the future.
+        \item With the completion of the error message system, I completed the checking functions, with the understanding that they would be used in an introductory class in the future.
         \item I also implemented the game framework, allowing students to create their own games.
         \item The current plan is for this game to be a project in the introductory class.
         \item There will be two options for this project: a one-player game or a two-player game.
