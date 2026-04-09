@@ -102,8 +102,8 @@ Past work at Morris included the modifications to the error messages to make the
 %One focus of our research is development of a tool called Babel to modify Clojure error messages [3,4].
         \item To address the error messages issues, Babel provides a way to directly replace error messages in the REPL with simplified, beginner-friendly versions.
         \item Errors on function calls give detailed information about expected arguments: types, position, etc.
-        \item Babel categorizes error data via dictionary lookup and specifications on Clojure function requirements. 
-        \item We developed and designed these specifications to capture as much information for the end user as possible, which is absent in default Clojure messages.
+        % \item Babel categorizes error data via dictionary lookup and specifications on Clojure function requirements. 
+        % \item We developed and designed these specifications to capture as much information for the end user as possible, which is absent in default Clojure messages.
     \end{itemize}
         Correct call: \\
     \texttt{user=>(even? 2)} \\
@@ -174,7 +174,9 @@ This was done to show students what the function is doing internally, while stil
 \texttt{0 \_ \_} \\
 \texttt{\_ \_ \_ } \\
 \texttt{\_ 1 \_ } \\
-In this example I played in the top left square, and the "enemy" (which chooses randomly) played in the bottom middle square. }
+In this example I played in the top left square, and the "enemy" (which chooses randomly) played in the bottom middle square. 
+
+\vspace*{0.07in}}
 
 
 
@@ -191,7 +193,7 @@ In this example I played in the top left square, and the "enemy" (which chooses 
         \item In a two-player game, the \texttt{win?} function needs to check both players.
         \item \texttt{enemy-turn} will also need to be defined, to simulate the enemy's turn.
         \item Unfortunately, it is possible for a student game to enter into an infinite recursion, and there isn't anything in place to handle this at the moment.
-        \item One potential solution is to put the game on a thread that times out.  
+        % \item One potential solution is to put the game on a thread that times out.  
         \item I'm currently looking into a Clojure system called \textit{futures} to do this.
     \end{itemize}
 }
@@ -220,7 +222,8 @@ In this example I played in the top left square, and the "enemy" (which chooses 
 	\item{[4]} Charlot Shaw \textit{Implementing Novice Friendly Error Messages in Clojure} Midwest Instruction and Computing Symposium (MICS) 2018
 	\item{[5]} Matthias Felleisen, Robert Bruce Findler, Matthew Flatt, Shriram Krishnamurthi \textit{How to Design Programs}, Second Edition, https://htdp.org/2023-3-6/Book/index.html
     \end{itemize}
-    
+
+    \vspace*{0.2in}
 }
 
 %\block{}{
